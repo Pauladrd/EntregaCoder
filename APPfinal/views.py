@@ -29,21 +29,21 @@ def tipodeTramite(request):
 
 def FechadeInicio(request):
    
-    formulario = FechadeInicio()
+    formulario = FormularioFechadeInicio()
     contexto = {'formulario': formulario}
     return render(request, 'APPfinal/fechadeInicio.html', contexto)
 
 
 def Documentacion(request):
 
-    formulario = Documentacion()
+    formulario = FormularioDocumentacion()
     contexto = {'formulario': formulario}
     
     return render(request,'APPfinal/documentacion.html', contexto)
 
 def Pago(request):
 
-    formulario = Pago()
+    formulario = FormularioPago()
     contexto = {'formulario': formulario}
 
     return render(request,'APPfinal/pagos.html', contexto)
