@@ -2,16 +2,20 @@
 
 {% block content %}
 
-Medio de Pago
-    Transferencia en $
-        Transferencia en <U$D</U$D>
-    Deposito en cuenta $
-    Deposito en cuenta <U1D></U1D>
-    Efectivo $
-    Efectivo <U1D></U1D>
-    Otros:
+<div class="text-center mt-5">
+        <form action="" method="POST">{% csrf_token %}
+            {{ formulario.as_p }}
+            <input class="form-control btn btn-primary" type="submit" value="Pago">
+        </form>
+</div>
 
-Fecha de Pago
+
+
+
+
+
+
 
 {% endblock %}
+
 

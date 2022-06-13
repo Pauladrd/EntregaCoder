@@ -2,9 +2,19 @@
 
 {% block content %}
 
-Nombre
-Apellido
-Grupo familiar (si/no)
+<div class="text-center mt-5">
+        <form action="" method="POST">{% csrf_token %}
+            {{ formulario.as_p }}
+            <input class="form-control btn btn-primary" type="submit" value="Agregar Cliente">
+        </form>
+</div>
+
+
+
+
+
+
+
 
 {% endblock %}
 

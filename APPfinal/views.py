@@ -1,10 +1,9 @@
 from django.shortcuts import render
-from django import forms
-from django.template import loader
-from datetime import datetime
-from pipes import Template
-from django.http import HttpResponse
-from django.template import Template, Context
+from .forms import FormularioCliente
+from .forms import FormularioTipodeTramite
+from .forms import FormularioFechadeInicio
+from .forms import FormularioDocumentacion
+from .forms import FormularioPago
 
 
 
@@ -15,25 +14,37 @@ from django.template import Template, Context
 
 def clientes(request):
     
-    
-    return render(request, 'APPfinal/clientes.html')
+    formulario = FormularioCliente()
+    contexto = {'formulario': formulario}
+    return render(request, 'APPfinal/clientes.html', contexto)
+
     
 
 def tipodeTramite(request):
-    
-    return render(request, 'APPfinal/tipodeTramite.html')
 
-def fechadeInicio(request):
+    formulario = FormularioTipodeTramite()
+    contexto = {'formulario': formulario}
+    
+    return render(request, 'APPfinal/tipodeTramite.html', contexto)
+
+def FechadeInicio(request):
    
-    return render(request, 'APPfinal/fechadeInicio.html')
+    formulario = FechadeInicio()
+    contexto = {'formulario': formulario}
+    return render(request, 'APPfinal/fechadeInicio.html', contexto)
 
 
-def documentacion(request):
-    documentoDeTexto = f"Ingresa el documento de Identidad: <br> (nombre)"
+def Documentacion(request):
+
+    formulario = Documentacion()
+    contexto = {'formulario': formulario}
     
-    return render(request,'APPfinal/documentacion.html')
+    return render(request,'APPfinal/documentacion.html', contexto)
 
-def pago(request):
+def Pago(request):
 
-    return render(request,'APPfinal/pagos.html')
+    formulario = Pago()
+    contexto = {'formulario': formulario}
+
+    return render(request,'APPfinal/pagos.html', contexto)
 
