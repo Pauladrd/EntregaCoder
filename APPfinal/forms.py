@@ -1,8 +1,8 @@
 from pyexpat import model
 from django import forms
 from .models import ModeloCliente
-from .models import ModeloTipodeTramite
-from .models import ModeloFechadeInicio
+from .models import ModeloTramite
+from .models import ModeloFecha
 from .models import ModeloDocumentacion
 from .models import ModeloPago
 
@@ -16,17 +16,17 @@ class FormularioCliente(forms.ModelForm):
 
         }
 
-class FormularioTipodeTramite(forms.ModelForm):
+class FormularioTramite(forms.ModelForm):
     class Meta: 
-        model = ModeloTipodeTramite
+        model = ModeloTramite
         fields = '__all__'
         widgets = { 
             'nombre': forms.TextInput(attrs={'class': 'form-control col-md-8'}),
         }
 
-class FormularioFechadeInicio(forms.ModelForm):
+class FormularioFecha(forms.ModelForm):
     class Meta: 
-        model = ModeloFechadeInicio
+        model = ModeloFecha
         fields = '__all__'
         widgets = { 
             'nombre': forms.TextInput(attrs={'class': 'form-control col-md-8'}),

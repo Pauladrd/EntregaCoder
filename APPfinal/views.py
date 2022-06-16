@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from .forms import FormularioCliente
-from .forms import FormularioTipodeTramite
-from .forms import FormularioFechadeInicio
+from .forms import FormularioTramite
+from .forms import FormularioFecha
 from .forms import FormularioDocumentacion
 from .forms import FormularioPago
+from django.template import loader
 
 
 
@@ -13,38 +14,110 @@ from .forms import FormularioPago
 # Create your views here.
 
 def clientes(request):
+    if request.method == 'POST':
     
-    formulario = FormularioCliente()
-    contexto = {'formulario': formulario}
-    return render(request, 'APPfinal/clientes.html', contexto)
+    miFormulario = FormularioCliente(request.POST)
+    print(miFormulario)
+
+        if miFormulario.is_valid:
+            informacion = miFormulario.cleaned_data
+
+            cliente = ModeloCliente(nombre = informacion['nombre'], apellido = informacion['apellido'])
+
+            cliente.save()
+
+            return render(request, APPfinal/clientes.html)
+
+        else:
+            miFormulario = FormularioCliente()
+        return render(request, 'APPfinal/clientes.html', {miFormulario':miFormulario})
+
 
     
 
-def tipodeTramite(request):
+def Tramite(request):
 
-    formulario = FormularioTipodeTramite()
-    contexto = {'formulario': formulario}
-    
-    return render(request, 'APPfinal/tipodeTramite.html', contexto)
+   miFormulario = FormularioTramite(request.POST)
+    print(miFormulario)
 
-def FechadeInicio(request):
+        if miFormulario.is_valid:
+            informacion = miFormulario.cleaned_data
+
+            tramite = ModeloTramite(nombre = informacion['nombre'], documento = informacion['documento'])
+
+            tramite.save()
+
+            return render(request, APPfinal/Tramite.html)
+
+        else:
+            miFormulario = FormularioTramite()
+        return render(request, 'APPfinal/Tramite.html', {miFormulario':miFormulario})
+        
+
+
+def Fecha(request):
    
-    formulario = FormularioFechadeInicio()
-    contexto = {'formulario': formulario}
-    return render(request, 'APPfinal/fechadeInicio.html', contexto)
+    miFormulario = FormularioFecha(request.POST)
+    print(miFormulario)
+
+        if miFormulario.is_valid:
+            informacion = miFormulario.cleaned_data
+
+            fecha = ModeloFecha(mes = informacion['mes'], año = informacion['año'])
+
+            fecha.save()
+
+            return render(request, APPfinal/fecha.html)
+
+        else:
+            miFormulario = FormularioFecha()
+        return render(request, 'APPfinal/fecha.html', {miFormulario':miFormulario})
+        
+
 
 
 def Documentacion(request):
 
-    formulario = FormularioDocumentacion()
-    contexto = {'formulario': formulario}
-    
-    return render(request,'APPfinal/documentacion.html', contexto)
+    miFormulario = FormularioDocumentacion(request.POST)
+    print(miFormulario)
+
+        if miFormulario.is_valid:
+            informacion = miFormulario.cleaned_data
+
+            documento = ModeloDocumento(documento = informacion['documento'], numero = informacion['numero'])
+
+            documento.save()
+
+            return render(request, APPfinal/documentacion.html)
+
+        else:
+            miFormulario = FormularioDocumentacion()
+        return render(request, 'APPfinal/documentacion.html', {miFormulario':miFormulario})
+        
 
 def Pago(request):
 
-    formulario = FormularioPago()
-    contexto = {'formulario': formulario}
+    miFormulario = FormularioPago(request.POST)
+    print(miFormulario)
 
-    return render(request,'APPfinal/pagos.html', contexto)
+        if miFormulario.is_valid:
+            informacion = miFormulario.cleaned_data
+
+            pago = ModeloCliente(mediodepago = informacion['mediodepago'], total = informacion['total'])
+
+            pago.save()
+
+            return render(request, APPfinal/pagos.html)
+
+        else:
+            miFormulario = FormularioPago()
+        return render(request, 'APPfinal/pagos.html', {miFormulario':miFormulario})
+        
+
+
+def index(self):
+    index = loader.get_template('index.html')
+    documento = index.render()
+
+
 

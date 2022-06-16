@@ -12,15 +12,15 @@ class ModeloCliente(models.Model):
         return self.nombre + " " + self.apellido
 
 
-class ModeloTipodeTramite(models.Model):
+class ModeloTramite(models.Model):
 
     tramite = models.CharField(max_length=40, null=False)
-    fechainicio = models.DateField(null=False)
+    fecha = models.DateField(null=False)
 
     def __str__(self) -> str:
         return self.tramite + " " + self.fechainicio
 
-class ModeloFechadeInicio(models.Model):
+class ModeloFecha(models.Model):
 
     dia = models.CharField(max_length=40, null=False)
     mes = models.CharField(max_length=40, null=False)
