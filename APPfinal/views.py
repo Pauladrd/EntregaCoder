@@ -1,11 +1,7 @@
 from django.shortcuts import render
-from .forms import FormularioCliente
-from .forms import FormularioTramite
-from .forms import FormularioFecha
-from .forms import FormularioDocumentacion
-from .forms import FormularioPago
 from django.template import loader
-
+from .forms import FormularioCliente, FormularioTramite, FormularioFecha, FormularioDocumentacion, FormularioPago 
+from .models import ModeloCliente, ModeloDocumentacion, ModeloFecha, ModeloPago, ModeloTramite
 
 
 
@@ -16,29 +12,30 @@ from django.template import loader
 def clientes(request):
     if request.method == 'POST':
     
-    miFormulario = FormularioCliente(request.POST)
-    print(miFormulario)
+        miFormulario = FormularioCliente(request.POST)
+        print(miFormulario)
 
         if miFormulario.is_valid:
             informacion = miFormulario.cleaned_data
 
-            cliente = ModeloCliente(nombre = informacion['nombre'], apellido = informacion['apellido'])
+            cliente = ModeloCliente(nombre = informacion['nombre'], apellido = informacion['apellido'], email = informacion['email'])
 
             cliente.save()
 
-            return render(request, APPfinal/clientes.html)
+            return render(request, 'APPfinal/clientes.html')
 
-        else:
-            miFormulario = FormularioCliente()
-        return render(request, 'APPfinal/clientes.html', {miFormulario':miFormulario})
+    else:
+        miFormulario = FormularioCliente()
+        return render(request, 'APPfinal/clientes.html', {'formulario':miFormulario})
 
 
     
 
 def Tramite(request):
+    if request.method == 'POST':
 
-   miFormulario = FormularioTramite(request.POST)
-    print(miFormulario)
+        miFormulario = FormularioTramite(request.POST)
+        print(miFormulario)
 
         if miFormulario.is_valid:
             informacion = miFormulario.cleaned_data
@@ -47,18 +44,19 @@ def Tramite(request):
 
             tramite.save()
 
-            return render(request, APPfinal/Tramite.html)
+            return render(request, 'APPfinal/Tramite.html')
 
-        else:
-            miFormulario = FormularioTramite()
-        return render(request, 'APPfinal/Tramite.html', {miFormulario':miFormulario})
-        
+    else:
+        miFormulario = FormularioTramite()
+        return render(request, 'APPfinal/Tramite.html', {'formulario':miFormulario})
+    
 
 
 def Fecha(request):
+    if request.method == 'POST':
    
-    miFormulario = FormularioFecha(request.POST)
-    print(miFormulario)
+        miFormulario = FormularioFecha(request.POST)
+        print(miFormulario)
 
         if miFormulario.is_valid:
             informacion = miFormulario.cleaned_data
@@ -67,52 +65,54 @@ def Fecha(request):
 
             fecha.save()
 
-            return render(request, APPfinal/fecha.html)
+            return render(request, 'APPfinal/fecha.html')
 
-        else:
-            miFormulario = FormularioFecha()
-        return render(request, 'APPfinal/fecha.html', {miFormulario':miFormulario})
-        
+    else:
+        miFormulario = FormularioFecha()
+        return render(request, 'APPfinal/fecha.html', {'formulario':miFormulario})
+    
 
 
 
 def Documentacion(request):
+    if request.method == 'POST':
 
-    miFormulario = FormularioDocumentacion(request.POST)
-    print(miFormulario)
+        miFormulario = FormularioDocumentacion(request.POST)
+        print(miFormulario)
 
         if miFormulario.is_valid:
             informacion = miFormulario.cleaned_data
 
-            documento = ModeloDocumento(documento = informacion['documento'], numero = informacion['numero'])
+            documento = ModeloDocumentacion(documento = informacion['documento'], numero = informacion['numero'])
 
             documento.save()
 
-            return render(request, APPfinal/documentacion.html)
+            return render(request, 'APPfinal/documentacion.html')
 
-        else:
-            miFormulario = FormularioDocumentacion()
-        return render(request, 'APPfinal/documentacion.html', {miFormulario':miFormulario})
-        
+    else:
+        miFormulario = FormularioDocumentacion()
+        return render(request, 'APPfinal/documentacion.html', {'formulario':miFormulario})
+    
 
 def Pago(request):
+    if request.method == 'POST':
 
-    miFormulario = FormularioPago(request.POST)
-    print(miFormulario)
+        miFormulario = FormularioPago(request.POST)
+        print(miFormulario)
 
         if miFormulario.is_valid:
             informacion = miFormulario.cleaned_data
 
-            pago = ModeloCliente(mediodepago = informacion['mediodepago'], total = informacion['total'])
+            pago = ModeloPago(mediodepago = informacion['mediodepago'], total = informacion['total'])
 
             pago.save()
 
-            return render(request, APPfinal/pagos.html)
+            return render(request, 'APPfinal/pagos.html')
 
-        else:
-            miFormulario = FormularioPago()
-        return render(request, 'APPfinal/pagos.html', {miFormulario':miFormulario})
-        
+    else:
+        miFormulario = FormularioPago()
+        return render(request, 'APPfinal/pagos.html', {'formulario':miFormulario})
+    
 
 
 def index(self):

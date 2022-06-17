@@ -12,6 +12,8 @@ class FormularioCliente(forms.ModelForm):
         fields = '__all__'
         widgets = { 
             'nombre': forms.TextInput(attrs={'class': 'form-control col-md-8'}),
+            'apellido': forms.TextInput(attrs={'class': 'form-control col-md-8'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control col-md-8'}),
 
 
         }
