@@ -50,3 +50,11 @@ class FormularioPago(forms.ModelForm):
         widgets = { 
             'nombre': forms.TextInput(attrs={'class': 'form-control col-md-6'}),
         }
+
+# class FormularioLogin(forms.ModelForm):
+#     class Meta: 
+#         model = 
+#         fields = '__all__'
+#         widgets = { 
+#             'nombre': forms.TextInput(attrs={'class': 'form-control col-md-6'}),
+#         }

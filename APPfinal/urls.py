@@ -11,5 +11,7 @@ urlpatterns = [
     path('Documentacion/', Documentacion, name='Documento'),
     path('Pago/', Pago, name='Pago'),
     path('index/', index, name='index'),
-
+    path('login/', login_view, name='login'),
+    path('logout/', logout_view, name='logout'),
+    path('sobremi/', sobremi, name='sobremi'),
 ]

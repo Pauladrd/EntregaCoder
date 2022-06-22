@@ -1,8 +1,10 @@
 from random import choices
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.template import loader
 from .forms import FormularioCliente, FormularioTramite, FormularioFecha, FormularioDocumentacion, FormularioPago 
 from .models import ModeloCliente, ModeloDocumentacion, ModeloFecha, ModeloPago, ModeloTramite
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate,login, logout
 
 
 
@@ -11,10 +13,14 @@ from .models import ModeloCliente, ModeloDocumentacion, ModeloFecha, ModeloPago,
 # Create your views here.
 
 def clientes(request):
+    miFormulario = FormularioCliente()
+    misClientes = ModeloCliente.objects.all()
+
     if request.method == 'POST':
     
         miFormulario = FormularioCliente(request.POST)
         print(miFormulario)
+
 
         if miFormulario.is_valid:
             informacion = miFormulario.cleaned_data
@@ -23,11 +29,11 @@ def clientes(request):
 
             cliente.save()
 
-            return render(request, 'APPfinal/clientes.html')
+            return render(request, 'APPfinal/clientes.html', {'formulario':miFormulario, 'clientes':misClientes})
 
     else:
-        miFormulario = FormularioCliente()
-        return render(request, 'APPfinal/clientes.html', {'formulario':miFormulario})
+        
+        return render(request, 'APPfinal/clientes.html', {'formulario':miFormulario, 'clientes':misClientes})
 
 
     
@@ -128,4 +134,22 @@ def index(self):
     documento = index.render()
 
 
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user=form.get_user()
+            login(request,user)
+            return redirect('Nombre')
+    else:
+        form = AuthenticationForm()
 
+    return render(request, 'APPfinal/login.html', {'form':form})
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('Nombre')
+
+def sobremi(request):
+    return render(request,'APPfinal/sobremi.html')
