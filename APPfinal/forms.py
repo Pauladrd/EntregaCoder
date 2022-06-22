@@ -23,7 +23,7 @@ class FormularioTramite(forms.ModelForm):
         model = ModeloTramite
         fields = '__all__'
         widgets = { 
-            'nombre': forms.TextInput(attrs={'class': 'form-control col-md-8'}),
+            'type': forms.Select(attrs={'class': 'form-control col-md-8'}),
         }
 
 class FormularioFecha(forms.ModelForm):

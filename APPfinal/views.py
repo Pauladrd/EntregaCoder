@@ -1,3 +1,4 @@
+from random import choices
 from django.shortcuts import render
 from django.template import loader
 from .forms import FormularioCliente, FormularioTramite, FormularioFecha, FormularioDocumentacion, FormularioPago 
@@ -32,20 +33,27 @@ def clientes(request):
     
 
 def Tramite(request):
-    if request.method == 'POST':
+    data = {
+            'form': ModeloTramite
+    }
 
+    if request.method == 'POST':
+       
         miFormulario = FormularioTramite(request.POST)
+
         print(miFormulario)
 
-        if miFormulario.is_valid:
+        if miFormulario.is_valid():
+            miFormulario.save()
             informacion = miFormulario.cleaned_data
 
-            tramite = ModeloTramite(nombre = informacion['nombre'], documento = informacion['documento'])
+            tramite = ModeloTramite(tramite = informacion['tramite'])
 
             tramite.save()
 
             return render(request, 'APPfinal/Tramite.html')
 
+    
     else:
         miFormulario = FormularioTramite()
         return render(request, 'APPfinal/Tramite.html', {'formulario':miFormulario})
