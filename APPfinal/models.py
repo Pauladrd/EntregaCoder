@@ -37,7 +37,7 @@ class ModeloFecha(models.Model):
 
     dia = models.CharField(max_length=40, null=False)
     mes = models.CharField(max_length=40, null=False)
-    año = models.EmailField(null=False)
+    año = models.CharField(max_length=40, null=False)
 
     def __str__(self) -> str:
         return self.dia + " " + self.mes + " " + self.año
