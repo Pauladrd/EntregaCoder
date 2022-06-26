@@ -1,11 +1,12 @@
-# EntregaCoder
+# EntregaCoder PAULA DEL RIO DONNELLY DNI 19010558
 # APP Entrega Final
 El objetivo final de este proyecto es ordenar las distintas partes del trabajo de gestiones para documentación.
 
 # Descripción del proyecto
-El trabajo se centro en mostrar opciones de gestoria de documentacion y activacion de los datos de clientes en la base de datos -  ayudar a tramitar documentación personal (residencias, partidas, apostillas, turnos para pasaportes y dni, aplicaciones a visados, entre otros)
 
-Por medio de la sistematización de los datos de los tramites, clientes y pagos se ordena el trabajo y se crea una base de datos para poder hacer crecer la oferta de trabajos a ofrecer
+Se me ocurrio hacer este trabajo centrando las consignas en opciones de gestoria de documentacion - Es un blog que contiene datos de clientes en la base de datos -  ayudar a tramitar documentación personal (residencias, partidas, apostillas, turnos para pasaportes y dni, aplicaciones a visados, entre otros)
+
+use la base del trabajo anterior que ya habia hecho y fui modificando e incorporando cambios. Me ayude con chats de compañeros y tambien pedi ayuda a un compañero del curso para conceptos que no podia incorporar al proyecto - Luego intente la sistematización de los datos de los tramites, clientes y pagos para ordenar el trabajo en base a esos criterios y crear una base de datos real y util para poder hacer crecer la oferta de trabajos a ofrecer
 
 se puede ver el funcionamiento en el siguiente video:
 https://youtu.be/4_tYrpYL75Y
